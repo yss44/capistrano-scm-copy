@@ -1,1 +1,31 @@
-copy.cap
+
+namespace :copy do
+
+  desc "Compress the local working directory"
+  task :compress do
+    # ...
+  end
+
+  desc "Upload the archive to a temporary directory on the server"
+  task :upload do
+    # ...
+  end
+
+  desc "Decompress archive to release directory"
+  task :decompress do
+    # ...
+  end
+
+  desc "create_release"
+  task :create_release do
+    puts "create_release!"
+    Process.exit!(false)
+  end
+
+  desc 'Check that the repository is reachable'
+  task :check do
+    puts "check!"
+    Process.exit!(false)
+  end
+
+end
