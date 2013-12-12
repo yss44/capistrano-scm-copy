@@ -1,0 +1,1 @@
+load File.expand_path('../tasks/copy.cap', __FILE__)
