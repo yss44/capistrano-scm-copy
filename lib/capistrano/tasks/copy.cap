@@ -1,14 +1,17 @@
+file "archive.tar.gz" => FileList["*"].exclude("archive.tar.gz") do |t|
+  sh "tar -cvzf #{t.name} #{t.prerequisites.join('  ')}"
+end
 
 namespace :copy do
 
   desc "Compress the local working directory"
-  task :compress do
-    # ...
-  end
+  task :compress => "archive.tar.gz"
 
   desc "Upload the archive to a temporary directory on the server"
-  task :upload do
-    # ...
+  task :upload => :compress do
+    on release_roles :all do
+
+    end
   end
 
   desc "Decompress archive to release directory"
