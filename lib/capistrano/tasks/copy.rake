@@ -1,34 +1,23 @@
-file "archive.tar.gz" => FileList["*"].exclude("archive.tar.gz") do |t|
-  sh "tar -cvzf #{t.name} #{t.prerequisites.join('  ')}"
-end
 
 namespace :copy do
 
-  desc "Compress the local working directory"
-  task :compress => "archive.tar.gz"
+  file "archive.tar.gz" => FileList["*"].exclude("archive.tar.gz") do |t|
+    sh "tar -cvzf #{t.name} #{t.prerequisites.join('  ')}"
+  end
 
-  desc "Upload the archive to a temporary directory on the server"
-  task :upload => :compress do
-    on release_roles :all do
-
+  desc "Deploy archive.tar.gz to release_path"
+  task :deploy => "archive.tar.gz" do |t|
+    tarball = t.prerequisites.first
+    on roles :all do
+      execute :mkdir, "-p", "#{fetch(:tmp_dir)}/#{fetch(:application)}"
+      upload!(tarball, "#{fetch(:tmp_dir)}/#{fetch(:application)}/capistrano-scm-copy")
+      execute :mkdir, "-p", release_path
+      execute :tar, "-xzf", "#{fetch(:tmp_dir)}/#{fetch(:application)}/capistrano-scm-copy", "-C", release_path
     end
   end
 
-  desc "Decompress archive to release directory"
-  task :decompress do
-    # ...
-  end
+  task :create_release => :deploy
 
-  desc "create_release"
-  task :create_release do
-    puts "create_release!"
-    Process.exit!(false)
-  end
-
-  desc 'Check that the repository is reachable'
-  task :check do
-    puts "check!"
-    Process.exit!(false)
-  end
+  task :check
 
 end
