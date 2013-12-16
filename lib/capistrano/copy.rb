@@ -1,1 +1,1 @@
-load File.expand_path('../tasks/copy.cap', __FILE__)
+load File.expand_path('../tasks/copy.rake', __FILE__)
