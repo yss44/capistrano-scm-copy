@@ -1,7 +1,7 @@
 capistrano-scm-copy
 ===================
 
-A copy strategy for Capistrano 3, which mimics the :copy scm of Capistrano 2.
+A copy strategy for Capistrano 3, which mimics the `:copy` scm of Capistrano 2.
 
 This will make Capistrano tar the current directory, upload it to the server(s) and then extract it.
 
