@@ -4,6 +4,6 @@ build:
         - bundle-install
         - script:
             name: build .gem
-            script: |-
+            code: |-
                 gem build capistrano-scm-copy.gemspec
                 copy *.gem $WERCKER_OUTPUT_DIR
