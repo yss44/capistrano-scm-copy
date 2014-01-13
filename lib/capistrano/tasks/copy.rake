@@ -15,13 +15,13 @@ namespace :copy do
       # Make sure the release directory exists
       execute :mkdir, "-p", release_path
 
-      # Create a temporary direcotry on the server
-      tmp_dir = capture("mktemp")
+      # Create a temporary file on the server
+      tmp_file = capture("mktemp")
 
-      # Upload the archive, extract it and finally remove the tmp_dir
-      upload!(tarball, tmp_dir)
-      execute :tar, "-xzf", tmp_dir, "-C", release_path
-      execute :rm, tmp_dir
+      # Upload the archive, extract it and finally remove the tmp_file
+      upload!(tarball, tmp_file)
+      execute :tar, "-xzf", tmp_file, "-C", release_path
+      execute :rm, tmp_file
     end
 
     Rake::Task["copy:clean"].invoke
