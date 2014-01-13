@@ -1,0 +1,9 @@
+box: wercker/rvm
+build:
+    steps:
+        - bundle-install
+        - script:
+            name: build .gem
+            script: |
+                gem build capistrano-scm-copy.gemspec
+                copy * WERCKER_OUTPUT_DIR
