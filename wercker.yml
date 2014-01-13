@@ -6,4 +6,4 @@ build:
             name: build .gem
             code: |-
                 gem build capistrano-scm-copy.gemspec
-                mv *.gem $WERCKER_OUTPUT_DIR
+                mv *.gem $WERCKER_OUTPUT_DIR/capistrano-scm-copy.gem
