@@ -7,3 +7,15 @@ build:
             code: |-
                 gem build capistrano-scm-copy.gemspec
                 mv *.gem $WERCKER_OUTPUT_DIR/capistrano-scm-copy.gem
+deploy:
+    steps:
+        - script:
+            name: login rubygems
+            code: |
+                export $GEM_CREDENTIALS_PATH=$HOME/.gem/credentials
+                touch $GEM_CREDENTIALS_PATH
+                chmod 0600 $GEM_CREDENTIALS_PATH
+                cat ":rubygems_api_key: $RUBY_GEM_API_KEY" > $GEM_CREDENTIALS_PATH
+        - script:
+            name: publish .gem
+            code: gem push capistrano-scm-copy.gem
