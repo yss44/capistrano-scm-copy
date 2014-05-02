@@ -36,5 +36,7 @@ namespace :copy do
   task :create_release => :deploy
 
   task :check
+  
+  task :set_current_revision
 
 end
