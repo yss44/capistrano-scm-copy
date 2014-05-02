@@ -15,7 +15,7 @@ deploy:
                 export RUBYGEMS_CREDENTIALS_PATH=$HOME/.gem/credentials
                 touch $RUBYGEMS_CREDENTIALS_PATH
                 chmod 0600 $RUBYGEMS_CREDENTIALS_PATH
-                cat ":rubygems_api_key: $RUBYGEMS_API_KEY" > $RUBYGEMS_CREDENTIALS_PATH
+                echo ":rubygems_api_key: $RUBYGEMS_API_KEY" > $RUBYGEMS_CREDENTIALS_PATH
         - script:
             name: publish .gem
             code: gem push capistrano-scm-copy.gem
