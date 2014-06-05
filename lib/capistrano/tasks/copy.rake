@@ -3,7 +3,7 @@ namespace :copy do
   archive_name = "archive.tar.gz"
 
   desc "Archive files to #{archive_name}"
-  file archive_name => FileList["*"].exclude(archive_name) do |t|
+  file archive_name => FileList["dist/*"].exclude(archive_name) do |t|
     sh "tar -cvzf #{t.name} #{t.prerequisites.join(" ")}"
   end
 
@@ -36,7 +36,7 @@ namespace :copy do
   task :create_release => :deploy
 
   task :check
-  
+
   task :set_current_revision
 
 end
