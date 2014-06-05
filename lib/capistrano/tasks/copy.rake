@@ -1,7 +1,7 @@
 namespace :copy do
 
   archive_name = "archive.tar.gz"
-  copy_dir = copy_dir || "*"
+  copy_dir = fetch(:symfony_env) || "*"
 
   desc "Archive files to #{archive_name}"
   file archive_name => FileList[copy_dir].exclude(archive_name) do |t|
