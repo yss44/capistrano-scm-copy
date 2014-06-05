@@ -44,6 +44,16 @@ The MIT License (MIT)
 Changelog
 =========
 
+0.1.0
+-----
+
+- Add `:include_dir`
+
+0.0.2
+-----
+
+- Add `task :set_current_revision` 
+
 0.0.1
 -----
 
