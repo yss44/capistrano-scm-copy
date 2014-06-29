@@ -34,7 +34,7 @@ namespace :copy do
     File.delete archive_name if File.exists? archive_name
   end
 
-  task :create_release => :deploy
+  #task :create_release => :deploy
 
   task :check
 
